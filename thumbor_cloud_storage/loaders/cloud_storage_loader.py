@@ -22,7 +22,8 @@ def load(context, path, callback):
             buckets[k] = bucket
 
     bucket = buckets.get(b)
-    blob = bucket.get_blob(path)
+    p = path.split('/')
+    blob = bucket.get_blob('/'.join((p[1:])))
 
     if blob:
         callback(blob.download_as_string())
